@@ -1,0 +1,16 @@
+{
+	"graphics_quality": "high",
+	"resolution": [1600, 900],
+	"fullscreen": false,
+	"vsync": true,
+	"camera_sensitivity": 1.0,
+	"animation_speed": 1.0,
+	"sound_volume": 0.8,
+	"music_volume": 0.25,
+	"sfx_enabled": true,
+	"show_legal_moves": true,
+	"board_orientation": "white",
+	"ai_difficulty": "medium",
+	"clock_seconds": 600,
+	"msaa": 2
+}
