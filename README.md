@@ -1,40 +1,47 @@
 # Shadow Chess 3D
 
-A premium desktop 3D chess game for Linux, built with Godot 4.7 and a presentation-independent rules engine.
+A premium desktop 3D chess game for Linux, built with Godot 4.7. Rules live in a presentation-independent engine; the board, salon, and HUD are a Shadowfetch black-and-gold flagship layer.
+
+Version **2.0.0**.
 
 ## Run
+
+**Installed binary**
+
+```bash
+~/.local/bin/shadow-chess-3d
+```
 
 **Exported binary**
 
 ```bash
-~/src/ShadowChess3D/export/linux/shadow-chess-3d.x86_64
-# or
-~/.local/bin/shadow-chess-3d
+./export/linux/shadow-chess-3d.x86_64
 ```
 
 **From Godot**
 
 ```bash
-godot --path ~/src/ShadowChess3D
+godot --path .
 ```
 
-The editor is installed at `~/.local/opt/godot/Godot_v4.7.2-stable_linux.x86_64` and linked as `~/.local/bin/godot`.
-
-**Desktop launcher** (not pinned): `~/.local/share/applications/shadow-chess-3d.desktop`
+Desktop launcher (not pinned): `~/.local/share/applications/com.shadowfetch.Chess.desktop`
 
 ## Tests
 
 ```bash
-~/src/ShadowChess3D/tools/run_tests.sh
+./tools/run_tests.sh
 ```
 
-## Export for Linux
+## Export and install
 
-Export templates for 4.7.2 must live in `~/.local/share/godot/export_templates/4.7.2.stable/`.
+Export templates for 4.7.2 must live under the user Godot export-templates directory.
 
 ```bash
-godot --headless --path ~/src/ShadowChess3D --export-release Linux ~/src/ShadowChess3D/export/linux/shadow-chess-3d.x86_64
+./tools/export_linux.sh
+./tools/install-user.sh
 ```
+
+`install-user.sh` writes the release binary to `~/.local/bin/shadow-chess-3d` and refreshes the desktop entry plus icons. Saves are kept if you later run `./tools/install-user.sh --uninstall`.
 
 ## Controls
 
@@ -50,3 +57,9 @@ Saves and settings use XDG paths:
 
 - `~/.config/shadow-chess-3d/settings.json`
 - `~/.local/share/shadow-chess-3d/saves/`
+
+## Presentation
+
+All 3D art is original and generated at runtime. See `docs/PRESENTATION.md` and `docs/ASSETS.md`.
+
+Screenshots in `docs/screenshots/` were captured from the running 2.0.0 game on Linux.

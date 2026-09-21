@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Shadow Chess 3D
+GenericName=Chess
+Comment=Premium 3D chess for Linux
+Exec=shadow-chess-3d
+TryExec=shadow-chess-3d
+Icon=shadow-chess-3d
+Terminal=false
+Categories=Game;BoardGame;
+Keywords=chess;board;3d;shadowfetch;
+StartupNotify=true
+StartupWMClass=Shadow Chess 3D
+X-AppVersion=2.0.0
