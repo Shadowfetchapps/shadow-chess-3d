@@ -20,7 +20,7 @@ func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	var bg := ColorRect.new()
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	bg.color = Color(0.04, 0.045, 0.055)
+	bg.color = Color(0.03, 0.025, 0.02)
 	add_child(bg)
 	var panel := PanelContainer.new()
 	panel.set_anchors_preset(Control.PRESET_CENTER)
@@ -37,6 +37,7 @@ func _ready() -> void:
 	title.text = "Settings"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 28)
+	title.add_theme_color_override("font_color", ThemeFactory.accent())
 	v.add_child(title)
 	_quality = _opt(["Low", "Medium", "High"], ["low", "medium", "high"], SettingsStore.graphics_quality)
 	v.add_child(_row("Graphics", _quality))

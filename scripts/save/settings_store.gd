@@ -142,6 +142,22 @@ func apply_audio() -> void:
 	AudioServer.set_bus_mute(master, sound_volume <= 0.001)
 
 
+func bloom_enabled() -> bool:
+	return graphics_quality != "low"
+
+
+func shadows_enabled() -> bool:
+	return graphics_quality != "low"
+
+
+func ssao_enabled() -> bool:
+	return graphics_quality == "high"
+
+
+func ssr_enabled() -> bool:
+	return graphics_quality == "high"
+
+
 func ai_depth() -> int:
 	match ai_difficulty:
 		"easy":

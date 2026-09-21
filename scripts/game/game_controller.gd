@@ -23,6 +23,15 @@ var pending_from: int = -1
 var pending_to: int = -1
 var _ai_busy := false
 var flipped := false
+var _hover_sq: int = -1
+var _ray_query: PhysicsRayQueryParameters3D
+var _vfx: BoardVFX
+var _world_env: WorldEnvironment
+var _lights: Dictionary = {}
+
+
+func is_thinking() -> bool:
+	return _ai_busy
 
 
 func _ready() -> void:
@@ -35,18 +44,20 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if paused or animating or engine.game_over() or not clock_enabled:
+	if not paused and not animating and not engine.game_over() and clock_enabled:
+		if engine.side_to_move == ChessTypes.WHITE:
+			white_clock = maxf(white_clock - delta, 0.0)
+			if white_clock <= 0.0:
+				engine.flag_timeout(ChessTypes.WHITE)
+				_end()
+		else:
+			black_clock = maxf(black_clock - delta, 0.0)
+			if black_clock <= 0.0:
+				engine.flag_timeout(ChessTypes.BLACK)
+				_end()
+	if paused or animating:
 		return
-	if engine.side_to_move == ChessTypes.WHITE:
-		white_clock = maxf(white_clock - delta, 0.0)
-		if white_clock <= 0.0:
-			engine.flag_timeout(ChessTypes.WHITE)
-			_end()
-	else:
-		black_clock = maxf(black_clock - delta, 0.0)
-		if black_clock <= 0.0:
-			engine.flag_timeout(ChessTypes.BLACK)
-			_end()
+	_update_hover()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -65,43 +76,16 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _build_world() -> void:
-	var env_node := WorldEnvironment.new()
-	var env := Environment.new()
-	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(0.045, 0.05, 0.062)
-	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color(0.28, 0.36, 0.46)
-	env.ambient_light_energy = 0.42
-	env.tonemap_mode = Environment.TONE_MAPPER_ACES
-	env.tonemap_exposure = 1.05
-	env.glow_enabled = true
-	env.glow_intensity = 0.28
-	env.glow_bloom = 0.05
-	env.ssao_enabled = SettingsStore.graphics_quality != "low"
-	env.adjustment_enabled = true
-	env.adjustment_saturation = 1.05
-	env_node.environment = env
-	add_child(env_node)
-	var key := DirectionalLight3D.new()
-	key.light_color = Color(1.0, 0.95, 0.88)
-	key.light_energy = 1.35
-	key.shadow_enabled = SettingsStore.graphics_quality != "low"
-	key.rotation_degrees = Vector3(-48, -28, 0)
-	add_child(key)
-	var fill := DirectionalLight3D.new()
-	fill.light_color = Color(0.45, 0.70, 0.85)
-	fill.light_energy = 0.35
-	fill.shadow_enabled = false
-	fill.rotation_degrees = Vector3(-20, 140, 0)
-	add_child(fill)
-	var rim := OmniLight3D.new()
-	rim.light_color = Color(0.45, 0.85, 0.95)
-	rim.light_energy = 1.6
-	rim.omni_range = 14.0
-	rim.position = Vector3(-6, 5, -5)
-	add_child(rim)
+	MaterialLibrary.ensure()
+	_world_env = WorldEnvironment.new()
+	_world_env.environment = WorldLook.make_environment()
+	add_child(_world_env)
+	_lights = WorldLook.add_lights(self)
+	SalonBuilder.build(self)
 	board = BoardView.new()
 	add_child(board)
+	_vfx = BoardVFX.new()
+	add_child(_vfx)
 	pieces_root = Node3D.new()
 	pieces_root.name = "Pieces"
 	add_child(pieces_root)
@@ -228,7 +212,7 @@ func _apply_and_animate(m: ChessMove) -> void:
 
 
 func _animate_move(m: ChessMove, done: Callable) -> void:
-	var dur := 0.32 / maxf(SettingsStore.animation_speed, 0.25)
+	var dur := 0.26 / maxf(SettingsStore.animation_speed, 0.25)
 	var mover: PieceView = piece_nodes.get(m.from_sq, null)
 	if mover == null:
 		rebuild_pieces()
@@ -237,9 +221,11 @@ func _animate_move(m: ChessMove, done: Callable) -> void:
 	piece_nodes.erase(m.from_sq)
 	if m.is_en_passant() and piece_nodes.has(m.captured_sq):
 		_fade_out(piece_nodes[m.captured_sq], dur)
+		_vfx.play_capture(board.square_to_world(m.captured_sq))
 		piece_nodes.erase(m.captured_sq)
 	elif m.is_capture() and piece_nodes.has(m.to_sq):
-		_fade_out(piece_nodes[m.to_sq], dur * 0.8)
+		_fade_out(piece_nodes[m.to_sq], dur * 0.75)
+		_vfx.play_capture(board.square_to_world(m.to_sq))
 		piece_nodes.erase(m.to_sq)
 	if m.is_castle():
 		var rook_from := m.from_sq + 3 if m.is_castle_kingside() else m.from_sq - 4
@@ -249,21 +235,33 @@ func _animate_move(m: ChessMove, done: Callable) -> void:
 			piece_nodes.erase(rook_from)
 			rook.square = rook_to
 			piece_nodes[rook_to] = rook
-			var twr := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-			twr.tween_property(rook, "position", board.square_to_world(rook_to), dur)
+			_slide(rook, board.square_to_world(rook_to), dur, 0.18)
+	var start := mover.position
 	var dest := board.square_to_world(m.to_sq)
-	var mid := (mover.position + dest) * 0.5 + Vector3.UP * 0.55
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	tw.tween_property(mover, "position", mid, dur * 0.45)
-	tw.tween_property(mover, "position", dest, dur * 0.55)
+	var height := 0.50 if m.is_capture() else 0.36
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.tween_method(func(t: float):
+		if is_instance_valid(mover):
+			mover.position = _arc(start, dest, t, height)
+	, 0.0, 1.0, dur)
 	mover.square = m.to_sq
 	piece_nodes[m.to_sq] = mover
+	tw.tween_callback(func():
+		if is_instance_valid(mover):
+			mover.play_land()
+		_vfx.play_land(dest)
+	)
 	if m.is_promotion():
+		var promo_color := mover.piece_color
 		tw.tween_callback(func():
 			if is_instance_valid(mover):
 				mover.queue_free()
 			piece_nodes.erase(m.to_sq)
-			_spawn(m.to_sq, m.promotion, ChessTypes.opp(engine.side_to_move))
+			var nv := _spawn(m.to_sq, m.promotion, promo_color)
+			nv.scale = Vector3(0.72, 1.12, 0.72)
+			var pop := create_tween()
+			pop.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			pop.tween_property(nv, "scale", Vector3.ONE, 0.16)
 			AudioManager.play("promote")
 		)
 	tw.tween_callback(done)
@@ -277,12 +275,33 @@ func _animate_move(m: ChessMove, done: Callable) -> void:
 		AudioManager.play("checkmate")
 	elif engine.in_check():
 		AudioManager.play("check")
+		var k := engine.find_king(engine.side_to_move)
+		if piece_nodes.has(k):
+			piece_nodes[k].pulse_check()
+
+
+func _slide(node: Node3D, dest: Vector3, dur: float, height: float) -> void:
+	var start := node.position
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.tween_method(func(t: float):
+		if is_instance_valid(node):
+			node.position = _arc(start, dest, t, height)
+	, 0.0, 1.0, dur)
+
+
+func _arc(a: Vector3, b: Vector3, t: float, height: float) -> Vector3:
+	var p := a.lerp(b, t)
+	p.y += sin(t * PI) * height
+	return p
 
 
 func _fade_out(node: Node3D, dur: float) -> void:
 	var tw := create_tween()
-	tw.tween_property(node, "position:y", node.position.y - 0.25, dur)
-	tw.parallel().tween_property(node, "scale", Vector3(0.2, 0.2, 0.2), dur)
+	tw.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tw.tween_property(node, "position:y", node.position.y + 0.18, dur * 0.35)
+	tw.parallel().tween_property(node, "scale", Vector3(0.85, 0.85, 0.85), dur * 0.35)
+	tw.tween_property(node, "position:y", node.position.y - 0.28, dur * 0.65)
+	tw.parallel().tween_property(node, "scale", Vector3(0.15, 0.15, 0.15), dur * 0.65)
 	tw.tween_callback(node.queue_free)
 
 
@@ -318,15 +337,36 @@ func _refresh_marks() -> void:
 		if SettingsStore.show_legal_moves:
 			for m in legal:
 				board.show_highlight(m.to_sq, "capture" if m.is_capture() else "legal")
+	if _hover_sq >= 0:
+		board.show_hover(_hover_sq)
+	else:
+		board.clear_hover()
+
+
+func _update_hover() -> void:
+	if camera_rig == null or camera_rig.camera == null:
+		return
+	var hit := _pick(get_viewport().get_mouse_position())
+	if hit == _hover_sq:
+		return
+	_hover_sq = hit
+	if _hover_sq >= 0:
+		board.show_hover(_hover_sq)
+	else:
+		board.clear_hover()
 
 
 func _pick(screen: Vector2) -> int:
 	var cam := camera_rig.camera
 	var from := cam.project_ray_origin(screen)
 	var to := from + cam.project_ray_normal(screen) * 80.0
-	var q := PhysicsRayQueryParameters3D.create(from, to)
-	q.collision_mask = 1 | 2
-	var hit := get_world_3d().direct_space_state.intersect_ray(q)
+	if _ray_query == null:
+		_ray_query = PhysicsRayQueryParameters3D.create(from, to)
+		_ray_query.collision_mask = 1 | 2
+	else:
+		_ray_query.from = from
+		_ray_query.to = to
+	var hit := get_world_3d().direct_space_state.intersect_ray(_ray_query)
 	if hit.is_empty():
 		return -1
 	var collider: Object = hit.get("collider")
@@ -349,7 +389,7 @@ func _maybe_ai() -> void:
 		return
 	_ai_busy = true
 	state_changed.emit()
-	await get_tree().create_timer(0.28).timeout
+	await get_tree().create_timer(0.22).timeout
 	var move := ChessAI.choose(engine, SettingsStore.ai_difficulty)
 	_ai_busy = false
 	if move:

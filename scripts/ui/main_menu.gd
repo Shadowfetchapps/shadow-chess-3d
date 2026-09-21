@@ -16,12 +16,18 @@ func _ready() -> void:
 	_build_ui()
 	SettingsStore.apply_display()
 	SettingsStore.apply_audio()
+	if OS.get_cmdline_user_args().has("--visual-qa"):
+		var qa_script := load("res://tools/visual_qa_runner.gd")
+		if qa_script:
+			var qa: Node = qa_script.new()
+			qa.name = "VisualQA"
+			get_tree().root.add_child.call_deferred(qa)
 
 
 func _build_backdrop() -> void:
 	var bg := ColorRect.new()
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	bg.color = Color(0.035, 0.04, 0.05)
+	bg.color = Color(0.018, 0.016, 0.014)
 	add_child(bg)
 	var vp_wrap := SubViewportContainer.new()
 	vp_wrap.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -36,20 +42,12 @@ func _build_backdrop() -> void:
 	var world := Node3D.new()
 	vp.add_child(world)
 	var env := WorldEnvironment.new()
-	var e := Environment.new()
-	e.background_mode = Environment.BG_COLOR
-	e.background_color = Color(0.035, 0.04, 0.05)
-	e.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	e.ambient_light_color = Color(0.3, 0.38, 0.48)
-	e.ambient_light_energy = 0.5
-	e.glow_enabled = true
-	env.environment = e
+	var look := WorldLook.make_environment()
+	look.ssr_enabled = false
+	env.environment = look
 	world.add_child(env)
-	var light := DirectionalLight3D.new()
-	light.rotation_degrees = Vector3(-40, -30, 0)
-	light.light_energy = 1.3
-	light.shadow_enabled = true
-	world.add_child(light)
+	WorldLook.add_lights(world)
+	SalonBuilder.build(world)
 	var board := BoardView.new()
 	world.add_child(board)
 	var pieces := Node3D.new()
@@ -64,23 +62,23 @@ func _build_backdrop() -> void:
 		pv.position = board.square_to_world(sq)
 		pieces.add_child(pv)
 	var cam := Camera3D.new()
-	cam.fov = 32
+	cam.fov = 34
 	world.add_child(cam)
 	_preview = world
 	var tw := create_tween().set_loops()
 	tw.tween_method(func(a: float):
 		if not is_instance_valid(cam):
 			return
-		cam.position = Vector3(sin(a) * 10.5, 7.2, cos(a) * 10.5)
-		cam.look_at(Vector3(0, 0.2, 0))
-	, 0.6, 0.6 + TAU, 48.0)
+		cam.position = Vector3(sin(a) * 10.2, 6.6, cos(a) * 10.2)
+		cam.look_at(Vector3(0, 0.22, 0))
+	, 0.55, 0.55 + TAU, 52.0)
 
 
 func _build_ui() -> void:
 	var shade := ColorRect.new()
 	shade.set_anchors_preset(Control.PRESET_LEFT_WIDE)
 	shade.offset_right = 520
-	shade.color = Color(0.03, 0.035, 0.045, 0.82)
+	shade.color = Color(0.03, 0.025, 0.018, 0.84)
 	add_child(shade)
 	var box := VBoxContainer.new()
 	box.set_anchors_preset(Control.PRESET_LEFT_WIDE)
@@ -91,7 +89,7 @@ func _build_ui() -> void:
 	box.add_theme_constant_override("separation", 14)
 	add_child(box)
 	var kicker := Label.new()
-	kicker.text = "PREMIUM DESKTOP CHESS"
+	kicker.text = "SHADOWFETCH  ·  PRIVATE SALON"
 	kicker.add_theme_color_override("font_color", ThemeFactory.accent())
 	kicker.add_theme_font_size_override("font_size", 12)
 	box.add_child(kicker)
@@ -105,10 +103,10 @@ func _build_ui() -> void:
 	var sub := Label.new()
 	sub.text = "3D"
 	sub.add_theme_font_size_override("font_size", 28)
-	sub.add_theme_color_override("font_color", Color(0.75, 0.82, 0.88))
+	sub.add_theme_color_override("font_color", ThemeFactory.muted())
 	box.add_child(sub)
 	var blurb := Label.new()
-	blurb.text = "A quiet board. Clear rules. Cinematic light."
+	blurb.text = "A dark salon. Clear rules. Gold on black."
 	blurb.add_theme_color_override("font_color", ThemeFactory.muted())
 	box.add_child(blurb)
 	box.add_child(Control.new())
@@ -119,9 +117,9 @@ func _build_ui() -> void:
 	box.add_child(_menu_btn("Settings", func(): get_tree().change_scene_to_file("res://scenes/menus/settings_menu.tscn")))
 	box.add_child(_menu_btn("Quit", func(): get_tree().quit()))
 	var ver := Label.new()
-	ver.text = "Godot 4.7  ·  Linux"
+	ver.text = "2.0.0  ·  Linux"
 	ver.add_theme_font_size_override("font_size", 12)
-	ver.add_theme_color_override("font_color", Color(0.45, 0.52, 0.58))
+	ver.add_theme_color_override("font_color", Color(0.50, 0.44, 0.34))
 	ver.size_flags_vertical = Control.SIZE_EXPAND | Control.SIZE_SHRINK_END
 	box.add_child(ver)
 	_setup = _build_setup()

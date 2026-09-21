@@ -60,13 +60,18 @@ func _top_bar() -> PanelContainer:
 	row.add_theme_constant_override("separation", 10)
 	bar.add_child(row)
 	var title := Label.new()
-	title.text = "SHADOW CHESS  3D"
+	title.text = "SHADOW CHESS"
 	var df: FontFile = load("res://assets/fonts/InterDisplay-SemiBold.ttf")
 	if df:
 		title.add_theme_font_override("font", df)
 	title.add_theme_font_size_override("font_size", 20)
 	title.add_theme_color_override("font_color", ThemeFactory.accent())
 	row.add_child(title)
+	var edition := Label.new()
+	edition.text = "3D"
+	edition.add_theme_font_size_override("font_size", 14)
+	edition.add_theme_color_override("font_color", ThemeFactory.muted())
+	row.add_child(edition)
 	_status = Label.new()
 	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -258,17 +263,22 @@ func _refresh() -> void:
 	_cap_w.text = "White took  " + _captured(e, ChessTypes.BLACK)
 	_cap_b.text = "Black took  " + _captured(e, ChessTypes.WHITE)
 	_fen_box.text = e.to_fen()
-	_thinking.visible = controller._ai_busy
+	_thinking.visible = controller.is_thinking()
 	controller.paused = _pause.visible
+	var check := e.in_check() and not e.game_over()
+	_status.add_theme_color_override("font_color", ThemeFactory.danger() if check else ThemeFactory.cream())
+	var w_turn := e.side_to_move == ChessTypes.WHITE and not e.game_over()
+	_clock_w.add_theme_color_override("font_color", ThemeFactory.accent() if w_turn else ThemeFactory.cream())
+	_clock_b.add_theme_color_override("font_color", ThemeFactory.accent() if not w_turn else ThemeFactory.cream())
 
 
 func _history_bb(e: ChessEngine) -> String:
 	if e.history.is_empty():
-		return "[color=#7f8c96]No moves yet[/color]"
+		return "[color=#b3a88e]No moves yet[/color]"
 	var parts: PackedStringArray = PackedStringArray()
 	for i in e.history.size():
 		if i % 2 == 0:
-			parts.append("[color=#6ad4e8]%d.[/color]" % (int(i / 2.0) + 1))
+			parts.append("[color=#d6b45c]%d.[/color]" % (int(i / 2.0) + 1))
 		parts.append(e.history[i].san)
 	return " ".join(parts)
 
