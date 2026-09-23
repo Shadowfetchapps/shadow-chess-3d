@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://co0gb6wxhsk2g"
+path="res://.godot/imported/board_frame.obj-bb9e9f38c38b3e5dd0258c01eae10105.mesh"
+
+[deps]
+
+files=["res://.godot/imported/board_frame.obj-bb9e9f38c38b3e5dd0258c01eae10105.mesh"]
+
+source_file="res://assets/models/board_frame.obj"
+dest_files=["res://.godot/imported/board_frame.obj-bb9e9f38c38b3e5dd0258c01eae10105.mesh", "res://.godot/imported/board_frame.obj-bb9e9f38c38b3e5dd0258c01eae10105.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
