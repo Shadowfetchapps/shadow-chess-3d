@@ -19,3 +19,4 @@ godot
 tools/godot*
 /tmp/
 docs/screenshots/*.import
+__pycache__/

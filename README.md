@@ -41,6 +41,10 @@ A flagship 3D chess game for Linux. Play Shadow — a threaded engine with six s
 
 ## Install and run
 
+**Download:** grab `shadow-chess-3d-3.0.0-linux-x86_64` from the [latest release](https://github.com/Shadowfetchapps/shadow-chess-3d/releases/latest), then `chmod +x` it and run it. It is a single self-contained binary.
+
+**Build from source:**
+
 ```bash
 ./tools/export_linux.sh     # builds export/linux/shadow-chess-3d.x86_64
 ./tools/install-user.sh     # installs to ~/.local/bin and adds the app launcher
