@@ -1,0 +1,340 @@
+# ShadowChess3D opening book
+# Format: one line per book variation, moves in UCI long algebraic notation from the
+# standard starting position, separated by single spaces. Castling is written as the king
+# move (e1g1, e8c8). Lines starting with '#' are comments (the opening name precedes each line).
+# Lines may transpose into each other; the book is keyed by position.
+
+# ======================================================================
+# 1.e4 e5 - Open Games
+# ======================================================================
+
+# C54 Italian Game: Giuoco Piano, Main Line
+e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 c2c3 g8f6 d2d4 e5d4 c3d4 c5b4 c1d2 b4d2
+# C53 Italian Game: Giuoco Pianissimo
+e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 c2c3 g8f6 d2d3 d7d6 e1g1 e8g8 f1e1 a7a6
+# C55 Italian Game: Two Knights Defense, Modern Bishop's Opening (4.d3 Be7)
+e2e4 e7e5 g1f3 b8c6 f1c4 g8f6 d2d3 f8e7 e1g1 e8g8 f1e1 d7d6
+# C55 Italian Game: Two Knights Defense, 4.d3 Bc5 (Giuoco Pianissimo)
+e2e4 e7e5 g1f3 b8c6 f1c4 g8f6 d2d3 f8c5 c2c3 d7d6 e1g1 a7a6
+# C58 Italian Game: Two Knights Defense, 4.Ng5 d5 Main Line
+e2e4 e7e5 g1f3 b8c6 f1c4 g8f6 f3g5 d7d5 e4d5 c6a5 c4b5 c7c6 d5c6 b7c6
+# C51 Italian Game: Evans Gambit Accepted
+e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 b2b4 c5b4 c2c3 b4a5 d2d4 d7d6
+
+# C92 Ruy Lopez: Closed, Morphy Defense Main Line (7...d6)
+e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5a4 g8f6 e1g1 f8e7 f1e1 b7b5 a4b3 d7d6
+# C88 Ruy Lopez: Closed, 7...O-O (Marshall / Anti-Marshall tabiya)
+e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5a4 g8f6 e1g1 f8e7 f1e1 b7b5 a4b3 e8g8
+# C84 Ruy Lopez: Closed, Martinez-style 6.d3
+e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5a4 g8f6 e1g1 f8e7 d2d3 b7b5 a4b3 d7d6
+# C67 Ruy Lopez: Berlin Defense, Berlin Endgame
+e2e4 e7e5 g1f3 b8c6 f1b5 g8f6 e1g1 f6e4 d2d4 e4d6 b5c6 d7c6 d4e5 d6f5
+# C65 Ruy Lopez: Berlin Defense, Anti-Berlin 4.d3
+e2e4 e7e5 g1f3 b8c6 f1b5 g8f6 d2d3 f8c5 c2c3 e8g8 e1g1 d7d6
+# C69 Ruy Lopez: Exchange Variation, Gligoric
+e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5c6 d7c6 e1g1 f7f6 d2d4 e5d4 f3d4 c6c5
+# C80 Ruy Lopez: Open Variation
+e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5a4 g8f6 e1g1 f6e4 d2d4 b7b5 a4b3 d7d5
+
+# C45 Scotch Game: Mieses Variation
+e2e4 e7e5 g1f3 b8c6 d2d4 e5d4 f3d4 g8f6 d4c6 b7c6 e4e5 d8e7 d1e2 f6d5
+# C45 Scotch Game: Classical, 5.Nxc6 Qf6
+e2e4 e7e5 g1f3 b8c6 d2d4 e5d4 f3d4 f8c5 d4c6 d8f6 d1d2 d7c6 b1c3 c8e6
+
+# C42 Petrov's Defense: Classical Attack
+e2e4 e7e5 g1f3 g8f6 f3e5 d7d6 e5f3 f6e4 d2d4 d6d5 f1d3 b8c6 e1g1 f8e7
+# C42 Petrov's Defense: Nimzowitsch Attack (5.Nc3)
+e2e4 e7e5 g1f3 g8f6 f3e5 d7d6 e5f3 f6e4 b1c3 e4c3 d2c3 f8e7 c1e3 e8g8
+
+# C26 Vienna Game: Mieses Variation (3.g3)
+e2e4 e7e5 b1c3 g8f6 g2g3 d7d5 e4d5 f6d5 f1g2 d5c3 b2c3 f8d6
+
+# C39 King's Gambit Accepted: Kieseritzky, Berlin Defense
+e2e4 e7e5 f2f4 e5f4 g1f3 g7g5 h2h4 g5g4 f3e5 g8f6 f1c4 d7d5 e4d5 f8d6
+
+# C49 Four Knights Game: Spanish, Symmetrical Variation
+e2e4 e7e5 g1f3 b8c6 b1c3 g8f6 f1b5 f8b4 e1g1 e8g8 d2d3 d7d6
+# C47 Four Knights Game: Scotch Variation
+e2e4 e7e5 g1f3 b8c6 b1c3 g8f6 d2d4 e5d4 f3d4 f8b4 d4c6 b7c6 f1d3 d7d5
+
+# ======================================================================
+# 1.e4 c5 - Sicilian Defense
+# ======================================================================
+
+# B90 Sicilian Defense: Najdorf, English Attack (6.Be3 e5)
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 a7a6 c1e3 e7e5 d4b3 c8e6
+# B90 Sicilian Defense: Najdorf, English Attack (6.Be3 e6 7.f3)
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 a7a6 c1e3 e7e6 f2f3 b7b5
+# B90 Sicilian Defense: Najdorf, 6.Be3 Ng4
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 a7a6 c1e3 f6g4 e3g5 h7h6
+# B96 Sicilian Defense: Najdorf, 6.Bg5 e6 7.f4
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 a7a6 c1g5 e7e6 f2f4 f8e7
+# B92 Sicilian Defense: Najdorf, Opocensky (6.Be2)
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 a7a6 f1e2 e7e5 d4b3 f8e7
+
+# B76 Sicilian Defense: Dragon, Yugoslav Attack (7...O-O)
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 g7g6 c1e3 f8g7 f2f3 e8g8
+# B76 Sicilian Defense: Dragon, Yugoslav Attack (7...Nc6)
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 g7g6 c1e3 f8g7 f2f3 b8c6
+
+# B67 Sicilian Defense: Classical, Richter-Rauzer
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 b8c6 c1g5 e7e6 d1d2 a7a6
+# B58 Sicilian Defense: Classical, Boleslavsky (6.Be2 e5)
+e2e4 c7c5 g1f3 b8c6 d2d4 c5d4 f3d4 g8f6 b1c3 d7d6 f1e2 e7e5 d4b3 f8e7
+
+# B84 Sicilian Defense: Scheveningen, Classical (6.Be2)
+e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 f3d4 g8f6 b1c3 e7e6 f1e2 f8e7 e1g1 e8g8
+
+# B22 Sicilian Defense: Alapin, 2...Nf6
+e2e4 c7c5 c2c3 g8f6 e4e5 f6d5 d2d4 c5d4 g1f3 b8c6 c3d4 d7d6 f1c4 d5b6
+# B22 Sicilian Defense: Alapin, 2...d5
+e2e4 c7c5 c2c3 d7d5 e4d5 d8d5 d2d4 g8f6 g1f3 e7e6 f1e2 b8c6 e1g1 c5d4
+
+# B48 Sicilian Defense: Taimanov, English Attack
+e2e4 c7c5 g1f3 e7e6 d2d4 c5d4 f3d4 b8c6 b1c3 d8c7 c1e3 a7a6 d1d2 g8f6
+
+# B33 Sicilian Defense: Sveshnikov, 7.Bg5
+e2e4 c7c5 g1f3 b8c6 d2d4 c5d4 f3d4 g8f6 b1c3 e7e5 d4b5 d7d6 c1g5 a7a6
+
+# B42 Sicilian Defense: Kan, 5.Bd3
+e2e4 c7c5 g1f3 e7e6 d2d4 c5d4 f3d4 a7a6 f1d3 g8f6 e1g1 d8c7 d1e2 d7d6
+
+# B36 Sicilian Defense: Accelerated Dragon, Maroczy Bind (Gurgenidze)
+e2e4 c7c5 g1f3 b8c6 d2d4 c5d4 f3d4 g7g6 c2c4 g8f6 b1c3 d7d6 f1e2 c6d4
+# B35 Sicilian Defense: Accelerated Dragon, Modern Bc4
+e2e4 c7c5 g1f3 b8c6 d2d4 c5d4 f3d4 g7g6 b1c3 f8g7 c1e3 g8f6 f1c4 e8g8
+
+# B31 Sicilian Defense: Rossolimo, 3...g6 4.Bxc6
+e2e4 c7c5 g1f3 b8c6 f1b5 g7g6 b5c6 d7c6 d2d3 f8g7 h2h3 g8f6 b1c3 e8g8
+# B30 Sicilian Defense: Rossolimo, 3...e6
+e2e4 c7c5 g1f3 b8c6 f1b5 e7e6 e1g1 g8e7 f1e1 a7a6 b5f1 d7d5
+
+# B25 Sicilian Defense: Closed
+e2e4 c7c5 b1c3 b8c6 g2g3 g7g6 f1g2 f8g7 d2d3 d7d6 f2f4 e7e6 g1f3 g8e7
+
+# ======================================================================
+# 1.e4 - Semi-Open Games
+# ======================================================================
+
+# C18 French Defense: Winawer, Main Line (7.Qg4)
+e2e4 e7e6 d2d4 d7d5 b1c3 f8b4 e4e5 c7c5 a2a3 b4c3 b2c3 g8e7 d1g4 d8c7
+# C14 French Defense: Classical, 4.Bg5 Be7
+e2e4 e7e6 d2d4 d7d5 b1c3 g8f6 c1g5 f8e7 e4e5 f6d7 g5e7 d8e7 f2f4 e8g8
+# C11 French Defense: Classical, Steinitz Variation
+e2e4 e7e6 d2d4 d7d5 b1c3 g8f6 e4e5 f6d7 f2f4 c7c5 g1f3 b8c6 c1e3 c5d4
+# C09 French Defense: Tarrasch, Open Variation
+e2e4 e7e6 d2d4 d7d5 b1d2 c7c5 e4d5 e6d5 g1f3 b8c6 f1b5 f8d6 d4c5 d6c5
+# C02 French Defense: Advance, Main Line (6.a3)
+e2e4 e7e6 d2d4 d7d5 e4e5 c7c5 c2c3 b8c6 g1f3 d8b6 a2a3 c5c4 b1d2 c6a5
+# C01 French Defense: Exchange Variation
+e2e4 e7e6 d2d4 d7d5 e4d5 e6d5 g1f3 g8f6 f1d3 f8d6 e1g1 e8g8
+
+# B19 Caro-Kann Defense: Classical, Main Line
+e2e4 c7c6 d2d4 d7d5 b1c3 d5e4 c3e4 c8f5 e4g3 f5g6 h2h4 h7h6 g1f3 b8d7
+# B17 Caro-Kann Defense: Karpov Variation, 5.Ng5
+e2e4 c7c6 d2d4 d7d5 b1c3 d5e4 c3e4 b8d7 e4g5 g8f6 f1d3 e7e6 g1f3 f8d6
+# B12 Caro-Kann Defense: Advance, Short Variation
+e2e4 c7c6 d2d4 d7d5 e4e5 c8f5 g1f3 e7e6 f1e2 c6c5 c1e3 c5d4 f3d4 g8e7
+# B12 Caro-Kann Defense: Advance, Bayonet Attack (4.Nc3 e6 5.g4)
+e2e4 c7c6 d2d4 d7d5 e4e5 c8f5 b1c3 e7e6 g2g4 f5g6 g1e2 c6c5
+# B14 Caro-Kann Defense: Panov-Botvinnik Attack
+e2e4 c7c6 d2d4 d7d5 e4d5 c6d5 c2c4 g8f6 b1c3 e7e6 g1f3 f8e7 c4d5 f6d5
+# B11 Caro-Kann Defense: Two Knights, 3...Bg4
+e2e4 c7c6 b1c3 d7d5 g1f3 c8g4 h2h3 g4f3 d1f3 g8f6 d2d3 e7e6
+
+# B08 Pirc Defense: Classical (4.Nf3 Bg7 5.Be2)
+e2e4 d7d6 d2d4 g8f6 b1c3 g7g6 g1f3 f8g7 f1e2 e8g8 e1g1 c7c6
+# B06 Modern Defense: Standard, 4.Be3 a6
+e2e4 g7g6 d2d4 f8g7 b1c3 d7d6 c1e3 a7a6 d1d2 b8d7
+
+# B01 Scandinavian Defense: Main Line, 3...Qa5
+e2e4 d7d5 e4d5 d8d5 b1c3 d5a5 d2d4 g8f6 g1f3 c7c6 f1c4 c8f5 c1d2 e7e6
+# B01 Scandinavian Defense: Gubinsky-Melts, 3...Qd6
+e2e4 d7d5 e4d5 d8d5 b1c3 d5d6 d2d4 g8f6 g1f3 a7a6 g2g3
+# B01 Scandinavian Defense: Modern Variation, 2...Nf6 3.d4
+e2e4 d7d5 e4d5 g8f6 d2d4 f6d5 g1f3 g7g6 c2c4 d5b6 b1c3 f8g7
+
+# B05 Alekhine Defense: Modern Variation, 4...Bg4
+e2e4 g8f6 e4e5 f6d5 d2d4 d7d6 g1f3 c8g4 f1e2 e7e6 e1g1 f8e7 c2c4 d5b6
+# B03 Alekhine Defense: Exchange Variation
+e2e4 g8f6 e4e5 f6d5 d2d4 d7d6 c2c4 d5b6 e5d6 c7d6 b1c3 g7g6 c1e3 f8g7
+
+# ======================================================================
+# 1.d4 d5 - Closed Games
+# ======================================================================
+
+# D58 Queen's Gambit Declined: Tartakower Defense
+d2d4 d7d5 c2c4 e7e6 b1c3 g8f6 c1g5 f8e7 e2e3 e8g8 g1f3 h7h6 g5h4 b7b6
+# D63 Queen's Gambit Declined: Orthodox Defense, 7.Rc1
+d2d4 d7d5 c2c4 e7e6 b1c3 g8f6 c1g5 f8e7 e2e3 e8g8 g1f3 b8d7 a1c1 c7c6
+# D37 Queen's Gambit Declined: Harrwitz Attack (5.Bf4)
+d2d4 d7d5 c2c4 e7e6 g1f3 g8f6 b1c3 f8e7 c1f4 e8g8 e2e3 c7c5 d4c5 e7c5
+# D36 Queen's Gambit Declined: Exchange, Carlsbad with 6.Qc2
+d2d4 d7d5 c2c4 e7e6 b1c3 g8f6 c4d5 e6d5 c1g5 c7c6 d1c2 f8e7 e2e3 b8d7
+# D38 Queen's Gambit Declined: Ragozin Defense
+d2d4 d7d5 c2c4 e7e6 b1c3 g8f6 g1f3 f8b4 c4d5 e6d5 c1g5 h7h6 g5f6 d8f6
+# D31 Queen's Gambit Declined: Alatortsev, Exchange with 5.Bf4
+d2d4 d7d5 c2c4 e7e6 b1c3 f8e7 c4d5 e6d5 c1f4 c7c6 e2e3 c8f5 g2g4 f5e6
+# D34 Tarrasch Defense: Classical, Prague Variation
+d2d4 d7d5 c2c4 e7e6 b1c3 c7c5 c4d5 e6d5 g1f3 b8c6 g2g3 g8f6 f1g2 f8e7
+
+# D27 Queen's Gambit Accepted: Classical, 7.a4
+d2d4 d7d5 c2c4 d5c4 g1f3 g8f6 e2e3 e7e6 f1c4 c7c5 e1g1 a7a6 a2a4 b8c6
+# D20 Queen's Gambit Accepted: Central Variation, 3.e4 e5
+d2d4 d7d5 c2c4 d5c4 e2e4 e7e5 g1f3 e5d4 f1c4 b8c6 e1g1 c8e6
+
+# D17 Slav Defense: Czech Variation, Main Line
+d2d4 d7d5 c2c4 c7c6 g1f3 g8f6 b1c3 d5c4 a2a4 c8f5 e2e3 e7e6 f1c4 f8b4
+# D11 Slav Defense: Modern, 4.e3 Bf5 5.Nc3 e6 6.Nh4
+d2d4 d7d5 c2c4 c7c6 g1f3 g8f6 e2e3 c8f5 b1c3 e7e6 f3h4 f5g6 h4g6 h7g6
+# D14 Slav Defense: Exchange Variation, Symmetrical Line
+d2d4 d7d5 c2c4 c7c6 c4d5 c6d5 b1c3 g8f6 c1f4 b8c6 e2e3 c8f5 g1f3 e7e6
+# D16 Slav Defense: Czech Variation via 2.Nf3
+d2d4 d7d5 g1f3 g8f6 c2c4 c7c6 b1c3 d5c4 a2a4 c8f5
+
+# D47 Semi-Slav Defense: Meran Variation
+d2d4 d7d5 c2c4 c7c6 g1f3 g8f6 b1c3 e7e6 e2e3 b8d7 f1d3 d5c4 d3c4 b7b5
+# D45 Semi-Slav Defense: Main Line, 6.Qc2
+d2d4 d7d5 c2c4 c7c6 g1f3 g8f6 b1c3 e7e6 e2e3 b8d7 d1c2 f8d6 f1d3 e8g8
+# D43 Semi-Slav Defense: Moscow Variation
+d2d4 d7d5 c2c4 c7c6 g1f3 g8f6 b1c3 e7e6 c1g5 h7h6 g5f6 d8f6 e2e3 b8d7
+# D43 Semi-Slav Defense: Anti-Moscow Gambit
+d2d4 d7d5 c2c4 c7c6 g1f3 g8f6 b1c3 e7e6 c1g5 h7h6 g5h4 d5c4 e2e4 g7g5
+
+# E06 Catalan Opening: Closed, 7.Qc2 (Open Catalan tabiya)
+d2d4 g8f6 c2c4 e7e6 g2g3 d7d5 f1g2 f8e7 g1f3 e8g8 e1g1 d5c4 d1c2 a7a6
+# E04 Catalan Opening: Open Defense, 5...Bb4+
+d2d4 g8f6 c2c4 e7e6 g2g3 d7d5 g1f3 d5c4 f1g2 f8b4 c1d2 a7a5
+# E06 Catalan Opening: via the Queen's Gambit move order
+d2d4 d7d5 c2c4 e7e6 g1f3 g8f6 g2g3 f8e7 f1g2 e8g8 e1g1 d5c4 d1c2 a7a6
+
+# D02 London System: vs 1...d5, 2.Bf4
+d2d4 d7d5 c1f4 g8f6 e2e3 c7c5 c2c3 b8c6 b1d2 e7e6 g1f3 f8d6 f4g3 e8g8
+# D02 London System: vs 1...d5, 2.Nf3
+d2d4 d7d5 g1f3 g8f6 c1f4 c7c5 e2e3 b8c6 b1d2 e7e6 c2c3 f8d6 f4g3 e8g8
+# A46 London System: vs 1...Nf6 2...e6
+d2d4 g8f6 g1f3 e7e6 c1f4 c7c5 e2e3 b8c6 c2c3 d7d5 b1d2 f8d6 f4g3 e8g8
+# A48 London System: vs King's Indian setup
+d2d4 g8f6 g1f3 g7g6 c1f4 f8g7 e2e3 e8g8 f1e2 d7d6 h2h3
+
+# D05 Colle System
+d2d4 d7d5 g1f3 g8f6 e2e3 e7e6 f1d3 c7c5 c2c3 b8c6 b1d2 f8d6 e1g1 e8g8
+
+# A45 Trompowsky Attack: Raptor, 2...Ne4 3.Bf4
+d2d4 g8f6 c1g5 f6e4 g5f4 c7c5 f2f3 d8a5 c2c3 e4f6
+
+# ======================================================================
+# 1.d4 Nf6 - Indian Defenses
+# ======================================================================
+
+# E97 King's Indian Defense: Classical, Mar del Plata (7...Nc6)
+d2d4 g8f6 c2c4 g7g6 b1c3 f8g7 e2e4 d7d6 g1f3 e8g8 f1e2 e7e5 e1g1 b8c6
+# E92 King's Indian Defense: Petrosian Variation (7.d5)
+d2d4 g8f6 c2c4 g7g6 b1c3 f8g7 e2e4 d7d6 g1f3 e8g8 f1e2 e7e5 d4d5 a7a5
+# E87 King's Indian Defense: Samisch, Closed Variation
+d2d4 g8f6 c2c4 g7g6 b1c3 f8g7 e2e4 d7d6 f2f3 e8g8 c1e3 e7e5 d4d5 f6h5
+# E69 King's Indian Defense: Fianchetto, Classical Main Line
+d2d4 g8f6 c2c4 g7g6 g1f3 f8g7 g2g3 e8g8 f1g2 d7d6 e1g1 b8d7 b1c3 e7e5
+# E73 King's Indian Defense: Averbakh Variation
+d2d4 g8f6 c2c4 g7g6 b1c3 f8g7 e2e4 d7d6 f1e2 e8g8 c1g5 c7c5
+
+# E54 Nimzo-Indian Defense: Rubinstein, Main Line
+d2d4 g8f6 c2c4 e7e6 b1c3 f8b4 e2e3 e8g8 f1d3 d7d5 g1f3 c7c5 e1g1 d5c4
+# E41 Nimzo-Indian Defense: Rubinstein, Hubner Variation
+d2d4 g8f6 c2c4 e7e6 b1c3 f8b4 e2e3 c7c5 f1d3 b8c6 g1f3 b4c3 b2c3 d7d6
+# E33 Nimzo-Indian Defense: Classical (4.Qc2 O-O)
+d2d4 g8f6 c2c4 e7e6 b1c3 f8b4 d1c2 e8g8 a2a3 b4c3 c2c3 b7b6 c1g5 c8b7
+# E36 Nimzo-Indian Defense: Classical, Noa Variation (4.Qc2 d5)
+d2d4 g8f6 c2c4 e7e6 b1c3 f8b4 d1c2 d7d5 a2a3 b4c3 c2c3 f6e4 c3c2 c7c5
+# E20 Nimzo-Indian Defense: Kmoch Variation (4.f3)
+d2d4 g8f6 c2c4 e7e6 b1c3 f8b4 f2f3 d7d5 a2a3 b4c3 b2c3 c7c5 c4d5 f6d5
+
+# E15 Queen's Indian Defense: Fianchetto, Nimzowitsch (4...Ba6)
+d2d4 g8f6 c2c4 e7e6 g1f3 b7b6 g2g3 c8a6 b2b3 f8b4 c1d2 b4e7 f1g2 c7c6
+# E17 Queen's Indian Defense: Fianchetto, Classical (4...Bb7)
+d2d4 g8f6 c2c4 e7e6 g1f3 b7b6 g2g3 c8b7 f1g2 f8e7 e1g1 e8g8 b1c3 f6e4
+# E12 Queen's Indian Defense: Petrosian Variation
+d2d4 g8f6 c2c4 e7e6 g1f3 b7b6 a2a3 c8b7 b1c3 d7d5 c4d5 f6d5 d1c2 d5c3
+
+# E11 Bogo-Indian Defense: Nimzowitsch Variation (4.Bd2 Qe7)
+d2d4 g8f6 c2c4 e7e6 g1f3 f8b4 c1d2 d8e7 g2g3 b8c6 f1g2 b4d2 b1d2 d7d6
+# E11 Bogo-Indian Defense: 4.Nbd2
+d2d4 g8f6 c2c4 e7e6 g1f3 f8b4 b1d2 e8g8 a2a3 b4e7 e2e4 d7d5
+
+# D38 Queen's Gambit Declined: Ragozin via the Indian move order
+d2d4 g8f6 c2c4 e7e6 g1f3 d7d5 b1c3 f8b4 c4d5 e6d5 c1g5 b8d7
+
+# D85 Grunfeld Defense: Exchange, Modern (7.Nf3)
+d2d4 g8f6 c2c4 g7g6 b1c3 d7d5 c4d5 f6d5 e2e4 d5c3 b2c3 f8g7 g1f3 c7c5
+# D86 Grunfeld Defense: Exchange, Classical (7.Bc4)
+d2d4 g8f6 c2c4 g7g6 b1c3 d7d5 c4d5 f6d5 e2e4 d5c3 b2c3 f8g7 f1c4 c7c5
+# D97 Grunfeld Defense: Russian, Hungarian Variation
+d2d4 g8f6 c2c4 g7g6 b1c3 d7d5 g1f3 f8g7 d1b3 d5c4 b3c4 e8g8 e2e4 a7a6
+# D83 Grunfeld Defense: 4.Bf4, Grunfeld Gambit Accepted
+d2d4 g8f6 c2c4 g7g6 b1c3 d7d5 c1f4 f8g7 e2e3 c7c5 d4c5 d8a5 a1c1 d5c4
+
+# A70 Benoni Defense: Modern, Classical Variation
+d2d4 g8f6 c2c4 c7c5 d4d5 e7e6 b1c3 e6d5 c4d5 d7d6 e2e4 g7g6 g1f3 f8g7
+# A62 Benoni Defense: Modern, Fianchetto Variation
+d2d4 g8f6 c2c4 c7c5 d4d5 e7e6 b1c3 e6d5 c4d5 d7d6 g1f3 g7g6 g2g3 f8g7
+
+# A58 Benko Gambit Accepted: Fully Accepted
+d2d4 g8f6 c2c4 c7c5 d4d5 b7b5 c4b5 a7a6 b5a6 c8a6 b1c3 d7d6 g1f3 g7g6
+
+# A81 Dutch Defense: Leningrad, Main Line
+d2d4 f7f5 g2g3 g8f6 f1g2 g7g6 g1f3 f8g7 e1g1 e8g8 c2c4 d7d6 b1c3 d8e8
+# A90 Dutch Defense: Stonewall, Modern
+d2d4 f7f5 g2g3 g8f6 f1g2 e7e6 g1f3 d7d5 e1g1 f8d6 c2c4 c7c6 b2b3 d8e7
+
+# ======================================================================
+# Flank Openings
+# ======================================================================
+
+# A38 English Opening: Symmetrical, Main Line with 7.d4
+c2c4 c7c5 g1f3 b8c6 b1c3 g7g6 g2g3 f8g7 f1g2 g8f6 e1g1 e8g8 d2d4 c5d4
+# A37 English Opening: Symmetrical, Botvinnik System Reversed
+c2c4 c7c5 b1c3 b8c6 g2g3 g7g6 f1g2 f8g7 g1f3 e7e6 e1g1 g8e7 d2d3 e8g8
+# A30 English Opening: Symmetrical, Hedgehog
+c2c4 c7c5 g1f3 g8f6 b1c3 e7e6 g2g3 b7b6 f1g2 c8b7 e1g1 f8e7 d2d4 c5d4
+# A34 English Opening: Symmetrical, Rubinstein Variation
+g1f3 g8f6 c2c4 c7c5 b1c3 b8c6 g2g3 d7d5 c4d5 f6d5 f1g2 d5c7 e1g1 e7e5
+
+# A29 English Opening: Four Knights, Fianchetto (Reversed Dragon)
+c2c4 e7e5 b1c3 g8f6 g1f3 b8c6 g2g3 d7d5 c4d5 f6d5 f1g2 d5b6 e1g1 f8e7
+# A28 English Opening: Four Knights, 4.e3 Bb4
+c2c4 e7e5 b1c3 g8f6 g1f3 b8c6 e2e3 f8b4 d1c2 e8g8 c3d5 f8e8
+# A26 English Opening: Closed, Reversed Closed Sicilian
+c2c4 e7e5 b1c3 b8c6 g2g3 g7g6 f1g2 f8g7 d2d3 d7d6 a1b1 a7a5
+# A22 English Opening: Reversed Sicilian, 2.g3 (Bremen)
+c2c4 e7e5 g2g3 g8f6 f1g2 d7d5 c4d5 f6d5 b1c3 d5b6 g1f3 b8c6 e1g1 f8e7
+
+# A15 English Opening: Anglo-Indian, King's Indian setup
+c2c4 g8f6 b1c3 g7g6 e2e4 d7d6 d2d4 f8g7 g1f3 e8g8 f1e2 e7e5
+# A13 English Opening: Agincourt, Catalan-style
+c2c4 g8f6 g1f3 e7e6 g2g3 d7d5 f1g2 f8e7 e1g1 e8g8 d2d4 d5c4
+# A17 English Opening: Anglo-Indian, Nimzo-English
+c2c4 g8f6 b1c3 e7e6 g1f3 f8b4 d1c2 e8g8 a2a3 b4c3 c2c3 b7b6
+# A16 English Opening: Anglo-Grunfeld
+c2c4 g8f6 b1c3 d7d5 c4d5 f6d5 g2g3 g7g6 f1g2 d5b6
+# A13 English Opening: 1...e6 into the Queen's Gambit Declined
+c2c4 e7e6 b1c3 d7d5 d2d4 g8f6 c4d5 e6d5 c1g5 c7c6 e2e3 f8e7
+# A11 English Opening: Caro-Kann Defensive System
+c2c4 c7c6 g1f3 d7d5 e2e3 g8f6 b1c3 e7e6 b2b3 b8d7 c1b2 f8d6
+
+# A13 Reti Opening: 2...e6, Neo-Catalan
+g1f3 d7d5 c2c4 e7e6 g2g3 g8f6 f1g2 f8e7 e1g1 e8g8 b2b3 c7c5
+# A11 Reti Opening: Slav setup, 3.b3
+g1f3 d7d5 c2c4 c7c6 b2b3 g8f6 g2g3 c8f5 f1g2 e7e6 e1g1 b8d7
+# D37 Reti Opening: transposition to the Queen's Gambit Declined
+g1f3 d7d5 d2d4 g8f6 c2c4 e7e6 b1c3 f8e7 c1f4 e8g8 e2e3 c7c5
+
+# A07 King's Indian Attack: vs ...e6 and ...c5
+g1f3 d7d5 g2g3 g8f6 f1g2 e7e6 e1g1 f8e7 d2d3 e8g8 b1d2 c7c5 e2e4 b8c6
+# A07 King's Indian Attack: vs Slav setup (...c6 and ...Bg4)
+g1f3 d7d5 g2g3 g8f6 f1g2 c7c6 e1g1 c8g4 d2d3 b8d7 b1d2 e7e5
+
+# A03 Bird Opening: Dutch Variation, fianchetto setup
+f2f4 d7d5 g1f3 g8f6 e2e3 g7g6 b2b3 f8g7 c1b2 e8g8 f1e2 c7c5
+
+# A01 Nimzo-Larsen Attack: Modern Variation
+b2b3 e7e5 c1b2 b8c6 e2e3 d7d5 f1b5 f8d6

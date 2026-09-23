@@ -1,0 +1,534 @@
+[
+  {
+    "id": "m1-01",
+    "title": "Last Rank Lesson",
+    "fen": "6k1/p4ppp/1p6/8/1n6/q3P3/P3QPPP/3R2K1 w - - 0 24",
+    "goal": "mate",
+    "depth": 1,
+    "side": "w",
+    "solution": [
+      "d1d8"
+    ],
+    "theme": "back-rank",
+    "difficulty": 1
+  },
+  {
+    "id": "m1-02",
+    "title": "Arabian Night",
+    "fen": "8/5pk1/6p1/8/2Q5/P4n1P/1r6/3R3K b - - 0 38",
+    "goal": "mate",
+    "depth": 1,
+    "side": "b",
+    "solution": [
+      "b2h2"
+    ],
+    "theme": "arabian",
+    "difficulty": 1
+  },
+  {
+    "id": "m1-03",
+    "title": "Anastasia's Net",
+    "fen": "3q1r2/pp2Nppk/8/8/8/3R4/PP3PPP/6K1 w - - 0 22",
+    "goal": "mate",
+    "depth": 1,
+    "side": "w",
+    "solution": [
+      "d3h3"
+    ],
+    "theme": "anastasia",
+    "difficulty": 1
+  },
+  {
+    "id": "m1-04",
+    "title": "Boden's Crossfire",
+    "fen": "4rbk1/pp3ppp/8/5b1Q/8/2P5/P2N1PPP/2KR3R b - - 0 17",
+    "goal": "mate",
+    "depth": 1,
+    "side": "b",
+    "solution": [
+      "f8a3"
+    ],
+    "theme": "boden",
+    "difficulty": 2
+  },
+  {
+    "id": "m1-05",
+    "title": "Golden Epaulettes",
+    "fen": "3rkr2/pp4pp/8/q7/5B2/1Q6/P4PPP/2R3K1 w - - 0 23",
+    "goal": "mate",
+    "depth": 1,
+    "side": "w",
+    "solution": [
+      "b3e6"
+    ],
+    "theme": "epaulette",
+    "difficulty": 2
+  },
+  {
+    "id": "m1-06",
+    "title": "Dovetail Joint",
+    "fen": "3r1qk1/pp4pp/8/8/4p3/8/PPQ3KP/3R2R1 b - - 0 29",
+    "goal": "mate",
+    "depth": 1,
+    "side": "b",
+    "solution": [
+      "f8f3"
+    ],
+    "theme": "dovetail",
+    "difficulty": 2
+  },
+  {
+    "id": "m1-07",
+    "title": "On the Hook",
+    "fen": "2R5/4kppp/p4N2/1p2P3/3n4/8/r4PPP/6K1 w - - 0 31",
+    "goal": "mate",
+    "depth": 1,
+    "side": "w",
+    "solution": [
+      "c8e8"
+    ],
+    "theme": "hook",
+    "difficulty": 2
+  },
+  {
+    "id": "m1-08",
+    "title": "A Night at the Opera",
+    "fen": "r2r2k1/pp3ppp/2n5/1Q6/6b1/2P4N/PP3PPP/4KB1R b - - 0 14",
+    "goal": "mate",
+    "depth": 1,
+    "side": "b",
+    "solution": [
+      "d8d1"
+    ],
+    "theme": "opera",
+    "difficulty": 1
+  },
+  {
+    "id": "m1-09",
+    "title": "Crowning Glory",
+    "fen": "6k1/4P1pp/1q6/8/3N4/P7/3r1PPP/2R3K1 w - - 0 36",
+    "goal": "mate",
+    "depth": 1,
+    "side": "w",
+    "solution": [
+      "e7e8q"
+    ],
+    "theme": "promotion",
+    "difficulty": 1
+  },
+  {
+    "id": "m1-10",
+    "title": "Knight's Crown",
+    "fen": "6rk/p1Q4p/1p6/8/2P1b3/1P5P/P4p1K/8 b - - 0 41",
+    "goal": "mate",
+    "depth": 1,
+    "side": "b",
+    "solution": [
+      "f2f1n"
+    ],
+    "theme": "underpromotion",
+    "difficulty": 2
+  },
+  {
+    "id": "m1-11",
+    "title": "Damiano's Seal",
+    "fen": "3r1rk1/ppq2p2/3bp1P1/7Q/8/2N5/PP3PP1/3R2K1 w - - 0 21",
+    "goal": "mate",
+    "depth": 1,
+    "side": "w",
+    "solution": [
+      "h5h7"
+    ],
+    "theme": "damiano",
+    "difficulty": 1
+  },
+  {
+    "id": "m1-12",
+    "title": "Anderssen's Anchor",
+    "fen": "8/5pk1/p1b1Q2r/1p2p3/8/1P6/P4Pp1/6K1 b - - 0 44",
+    "goal": "mate",
+    "depth": 1,
+    "side": "b",
+    "solution": [
+      "h6h1"
+    ],
+    "theme": "anderssen",
+    "difficulty": 2
+  },
+  {
+    "id": "m2-01",
+    "title": "The Smothered King",
+    "fen": "r1b2r1k/pp1n2pp/1q6/3Q2N1/8/1B6/PP3PPP/3R2K1 w - - 0 19",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "d5g8",
+      "f8g8",
+      "g5f7"
+    ],
+    "theme": "smothered",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-02",
+    "title": "Overloaded Guard",
+    "fen": "3r2k1/pb3ppp/1p6/8/3q4/1N2B3/PPQ2PPP/3R2K1 b - - 0 27",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "d4d1",
+      "c2d1",
+      "d8d1"
+    ],
+    "theme": "back-rank",
+    "difficulty": 2
+  },
+  {
+    "id": "m2-03",
+    "title": "Legal's Trap",
+    "fen": "r2qkbnr/ppp2pp1/2np3p/4N3/2B1P3/2NP4/PPP2PPP/R1Bb1RK1 w kq - 0 7",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "c4f7",
+      "e8e7",
+      "c3d5"
+    ],
+    "theme": "legal",
+    "difficulty": 2
+  },
+  {
+    "id": "m2-04",
+    "title": "Greco's Diagonal",
+    "fen": "r3r1k1/pp3ppp/2pq4/2b5/4n3/1QN5/PBP3PP/R4R1K b - - 0 20",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "e4g3",
+      "h2g3",
+      "d6h6"
+    ],
+    "theme": "greco",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-05",
+    "title": "Lolli's Wedge",
+    "fen": "2r2rk1/pb3p1p/1p3Pp1/q1p5/8/1BP5/PP1Q2PP/4R1K1 w - - 0 26",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "d2h6",
+      "f8e8",
+      "h6g7"
+    ],
+    "theme": "lolli",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-06",
+    "title": "Morphy's Long Diagonal",
+    "fen": "4r2k/pbR2p1p/1p4r1/3q4/8/2P2N2/PP3PPP/3RB2K b - - 0 28",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "d5f3",
+      "g2f3",
+      "b7f3"
+    ],
+    "theme": "morphy",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-07",
+    "title": "Reti's Double Strike",
+    "fen": "r1b1nb1r/ppp1kppp/4p3/2q1P3/8/3Q1N2/PPPB1PPP/2KR3R w - - 0 12",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "d3d8",
+      "e7d8",
+      "d2g5"
+    ],
+    "theme": "reti",
+    "difficulty": 4
+  },
+  {
+    "id": "m2-08",
+    "title": "Double Trouble",
+    "fen": "5rk1/pb3pp1/1p6/2b5/2Pqn3/2N3p1/PPQ5/4R2K b - - 0 30",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "d4g1",
+      "e1g1",
+      "e4f2"
+    ],
+    "theme": "double-check",
+    "difficulty": 4
+  },
+  {
+    "id": "m2-09",
+    "title": "Corridor of Doom",
+    "fen": "1k1r3r/ppp2ppp/5nq1/8/3Q4/2P5/PP3PPP/3R1BK1 w - - 0 22",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "d4d8",
+      "h8d8",
+      "d1d8"
+    ],
+    "theme": "corridor",
+    "difficulty": 2
+  },
+  {
+    "id": "m2-10",
+    "title": "Rook Ladder",
+    "fen": "6r1/5k2/1p3p2/p2Np3/P3P3/1P5r/2K5/8 b - - 0 47",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "g8g2",
+      "c2c1",
+      "h3h1"
+    ],
+    "theme": "ladder",
+    "difficulty": 2
+  },
+  {
+    "id": "m2-11",
+    "title": "Blackburne's Bishops",
+    "fen": "r4r1k/pbqn1ppp/1p2N3/2p3N1/3B4/3B4/PP2QPPP/5RK1 w - - 0 21",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "d4g7",
+      "h8g8",
+      "d3h7"
+    ],
+    "theme": "blackburne",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-12",
+    "title": "The Unveiled Battery",
+    "fen": "r6k/pb3ppp/1p6/3r4/4qP1Q/8/PPP4P/R1Bn2K1 b - - 0 27",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "e4h1",
+      "g1h1",
+      "d5g5"
+    ],
+    "theme": "discovered-check",
+    "difficulty": 4
+  },
+  {
+    "id": "m2-13",
+    "title": "Desert Sacrifice",
+    "fen": "3r1n1k/ppq2p1p/5Np1/8/1Q6/7R/PP3PPP/6K1 w - - 0 29",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "b4f8",
+      "d8f8",
+      "h3h7"
+    ],
+    "theme": "arabian",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-14",
+    "title": "Anastasia's Revenge",
+    "fen": "r5k1/pp3ppp/3q4/5r2/8/2P5/PP2nPPP/R1BQ1R1K b - - 0 23",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "d6h2",
+      "h1h2",
+      "f5h5"
+    ],
+    "theme": "anastasia",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-15",
+    "title": "Knight in Support",
+    "fen": "r3qrk1/pp2bpp1/2p1pn2/6N1/8/1P5Q/PBP2PPP/3R2K1 w - - 0 20",
+    "goal": "mate",
+    "depth": 2,
+    "side": "w",
+    "solution": [
+      "b2f6",
+      "g7f6",
+      "h3h7"
+    ],
+    "theme": "support",
+    "difficulty": 3
+  },
+  {
+    "id": "m2-16",
+    "title": "Boden's Sacrifice",
+    "fen": "4r1k1/pp2bppp/2q5/5b1Q/8/2N5/PP1N1PPP/2KR3R b - - 0 18",
+    "goal": "mate",
+    "depth": 2,
+    "side": "b",
+    "solution": [
+      "c6c3",
+      "b2c3",
+      "e7a3"
+    ],
+    "theme": "boden",
+    "difficulty": 3
+  },
+  {
+    "id": "m3-01",
+    "title": "Philidor's Legacy",
+    "fen": "r4rk1/pb1n1Npp/1q6/8/2Q5/8/PP3PPP/3R2K1 w - - 0 25",
+    "goal": "mate",
+    "depth": 3,
+    "side": "w",
+    "solution": [
+      "f7h6",
+      "g8h8",
+      "c4g8",
+      "f8g8",
+      "h6f7"
+    ],
+    "theme": "smothered",
+    "difficulty": 4
+  },
+  {
+    "id": "m3-02",
+    "title": "The Damiano Descent",
+    "fen": "6kr/pp2qp2/2p3p1/8/8/2PQ2p1/PP1N1PP1/5RK1 b - - 0 31",
+    "goal": "mate",
+    "depth": 3,
+    "side": "b",
+    "solution": [
+      "h8h1",
+      "g1h1",
+      "e7h4",
+      "h1g1",
+      "h4h2"
+    ],
+    "theme": "damiano",
+    "difficulty": 3
+  },
+  {
+    "id": "m3-03",
+    "title": "Storm on f7",
+    "fen": "5rk1/pb3ppp/1qn5/3Q2N1/8/B7/PP1r1PPP/4R1K1 w - - 0 24",
+    "goal": "mate",
+    "depth": 3,
+    "side": "w",
+    "solution": [
+      "d5f7",
+      "f8f7",
+      "e1e8",
+      "f7f8",
+      "e8f8"
+    ],
+    "theme": "queen-sacrifice",
+    "difficulty": 4
+  },
+  {
+    "id": "m3-04",
+    "title": "March of the Pawn",
+    "fen": "1n3rk1/pb4pp/1p2P3/qB4N1/1Q6/8/PP3PPP/4R1K1 w - - 0 27",
+    "goal": "mate",
+    "depth": 3,
+    "side": "w",
+    "solution": [
+      "b4f8",
+      "g8f8",
+      "e6e7",
+      "f8g8",
+      "e7e8q"
+    ],
+    "theme": "promotion",
+    "difficulty": 4
+  },
+  {
+    "id": "m3-05",
+    "title": "Morphy's Legacy",
+    "fen": "4r2k/pb3ppp/1p1r4/3q4/8/B1P2N2/1P3PPP/R4RK1 b - - 0 25",
+    "goal": "mate",
+    "depth": 3,
+    "side": "b",
+    "solution": [
+      "d5f3",
+      "g2f3",
+      "d6g6",
+      "g1h1",
+      "b7f3"
+    ],
+    "theme": "morphy",
+    "difficulty": 5
+  },
+  {
+    "id": "m3-06",
+    "title": "Anastasia's Embrace",
+    "fen": "r5k1/pp3ppp/3q4/3r4/3n4/1P6/PB3PPP/RQ3RK1 b - - 0 22",
+    "goal": "mate",
+    "depth": 3,
+    "side": "b",
+    "solution": [
+      "d4e2",
+      "g1h1",
+      "d6h2",
+      "h1h2",
+      "d5h5"
+    ],
+    "theme": "anastasia",
+    "difficulty": 4
+  },
+  {
+    "id": "m3-07",
+    "title": "Anderssen's Spear",
+    "fen": "r3r1k1/pbq2pPp/1p6/7Q/5N2/1P1R4/PB3PP1/6K1 w - - 0 30",
+    "goal": "mate",
+    "depth": 3,
+    "side": "w",
+    "solution": [
+      "h5h7",
+      "g8h7",
+      "d3h3",
+      "h7g8",
+      "h3h8"
+    ],
+    "theme": "anderssen",
+    "difficulty": 4
+  },
+  {
+    "id": "m3-08",
+    "title": "The Overloaded Queen",
+    "fen": "3r2k1/pp3ppp/8/8/2bq4/1Q4N1/PP3PPP/3R2K1 b - - 0 26",
+    "goal": "mate",
+    "depth": 3,
+    "side": "b",
+    "solution": [
+      "d4d1",
+      "b3d1",
+      "d8d1",
+      "g3f1",
+      "d1f1"
+    ],
+    "theme": "back-rank",
+    "difficulty": 4
+  }
+]

@@ -11,6 +11,7 @@ var flags: int = 0
 var prev_castling: int = 0
 var prev_ep: int = -1
 var prev_halfmove: int = 0
+var prev_hash: int = 0
 var san: String = ""
 var uci: String = ""
 
@@ -73,6 +74,7 @@ func duplicate_move() -> ChessMove:
 	m.prev_castling = prev_castling
 	m.prev_ep = prev_ep
 	m.prev_halfmove = prev_halfmove
+	m.prev_hash = prev_hash
 	m.san = san
 	m.uci = uci
 	return m
