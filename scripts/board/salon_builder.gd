@@ -1,25 +1,30 @@
 class_name SalonBuilder
 extends RefCounted
 
+## The private salon around the board: a leather-topped walnut table with a
+## brass edge, herringbone floor and rug, damask walls with wainscot, velvet
+## drapes with gold branding, brass floor lamps, and a working chess clock.
+## Table top is y = 0 (the board frame rests on it).
 
-static func build(parent: Node3D) -> Node3D:
+const TABLE_HALF := 7.0
+const FLOOR_Y := -3.2
+
+
+static func build(parent: Node3D, with_clock: bool = true) -> Node3D:
 	MaterialLibrary.ensure()
 	var root := Node3D.new()
 	root.name = "Salon"
 	parent.add_child(root)
-	_floor(root)
-	_walls(root)
-	_columns(root)
-	_drapes(root)
-	_pedestal(root)
+	_table(root)
+	_room(root)
+	_drapes_and_branding(root)
 	_lamps(root)
-	_branding(root)
-	var wall_fill := OmniLight3D.new()
-	wall_fill.position = Vector3(0, 3.4, -10.5)
-	wall_fill.light_color = Color(1.0, 0.82, 0.52)
-	wall_fill.light_energy = 1.6
-	wall_fill.omni_range = 10.0
-	root.add_child(wall_fill)
+	if with_clock:
+		var clock := ChessClockProp.new()
+		clock.name = "ChessClock"
+		clock.position = Vector3(-6.25, 0.0, -1.6)
+		clock.rotation_degrees = Vector3(0, 62, 0)
+		root.add_child(clock)
 	return root
 
 
@@ -35,13 +40,14 @@ static func _box(parent: Node3D, size: Vector3, pos: Vector3, mat: Material, rot
 	return mi
 
 
-static func _cyl(parent: Node3D, r_top: float, r_bot: float, h: float, pos: Vector3, mat: Material, segs := 24) -> MeshInstance3D:
+static func _cyl(parent: Node3D, r_top: float, r_bot: float, h: float, pos: Vector3, mat: Material, segs := 32) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	var mesh := CylinderMesh.new()
 	mesh.top_radius = r_top
 	mesh.bottom_radius = r_bot
 	mesh.height = h
 	mesh.radial_segments = segs
+	mesh.rings = 1
 	mi.mesh = mesh
 	mi.position = pos
 	mi.material_override = mat
@@ -49,83 +55,113 @@ static func _cyl(parent: Node3D, r_top: float, r_bot: float, h: float, pos: Vect
 	return mi
 
 
-static func _floor(parent: Node3D) -> void:
-	_box(parent, Vector3(32, 0.16, 32), Vector3(0, -1.42, 0), MaterialLibrary.wood_floor)
-	var rug := _box(parent, Vector3(14.5, 0.02, 14.5), Vector3(0, -1.33, 0), MaterialLibrary.felt_mat)
-	rug.material_override = MaterialLibrary.felt_mat
+static func _table(parent: Node3D) -> void:
+	var t := TABLE_HALF * 2.0
+	_box(parent, Vector3(t, 0.34, t), Vector3(0, -0.17, 0), MaterialLibrary.table_wood)
+	_box(parent, Vector3(t - 1.1, 0.012, t - 1.1), Vector3(0, 0.001, 0), MaterialLibrary.leather_mat)
+	# Brass edge banding and a routed lip.
+	for s in [-1.0, 1.0]:
+		_box(parent, Vector3(t + 0.04, 0.05, 0.05), Vector3(0, -0.02, s * (TABLE_HALF + 0.005)), MaterialLibrary.brass_mat)
+		_box(parent, Vector3(0.05, 0.05, t + 0.04), Vector3(s * (TABLE_HALF + 0.005), -0.02, 0), MaterialLibrary.brass_mat)
+		_box(parent, Vector3(t - 1.06, 0.018, 0.03), Vector3(0, 0.006, s * (TABLE_HALF - 0.55)), MaterialLibrary.brass_mat)
+		_box(parent, Vector3(0.03, 0.018, t - 1.06), Vector3(s * (TABLE_HALF - 0.55), 0.006, 0), MaterialLibrary.brass_mat)
+	# Apron and a heavy turned pedestal.
+	_box(parent, Vector3(t - 0.8, 0.5, t - 0.8), Vector3(0, -0.58, 0), MaterialLibrary.table_wood)
+	_cyl(parent, 1.4, 1.1, 1.4, Vector3(0, -1.5, 0), MaterialLibrary.table_wood, 48)
+	_cyl(parent, 0.9, 1.3, 0.3, Vector3(0, -2.3, 0), MaterialLibrary.table_wood, 48)
+	_cyl(parent, 3.2, 3.4, 0.35, Vector3(0, FLOOR_Y + 0.2, 0), MaterialLibrary.table_wood, 64)
+	_cyl(parent, 1.42, 1.42, 0.06, Vector3(0, -0.82, 0), MaterialLibrary.brass_mat, 48)
 
 
-static func _walls(parent: Node3D) -> void:
-	_box(parent, Vector3(32, 8.2, 0.22), Vector3(0, 2.6, -15.4), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(0.22, 8.2, 30), Vector3(-15.6, 2.6, 0), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(0.22, 8.2, 30), Vector3(15.6, 2.6, 0), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(4.0, 0.12, 32), Vector3(-14.0, 9.4, 0), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(4.0, 0.12, 32), Vector3(14.0, 9.4, 0), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(24, 0.12, 4.0), Vector3(0, 9.4, -14.0), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(24, 0.12, 4.0), Vector3(0, 9.4, 14.0), MaterialLibrary.wall_mat)
-	_box(parent, Vector3(22.0, 0.04, 0.04), Vector3(0, 9.32, -12.05), MaterialLibrary.brass_mat)
-	_box(parent, Vector3(18.0, 0.04, 0.04), Vector3(0, 6.2, -15.26), MaterialLibrary.brass_mat)
-	_box(parent, Vector3(0.04, 6.4, 0.04), Vector3(-8.8, 3.4, -15.26), MaterialLibrary.brass_mat)
-	_box(parent, Vector3(0.04, 6.4, 0.04), Vector3(8.8, 3.4, -15.26), MaterialLibrary.brass_mat)
+static func _room(parent: Node3D) -> void:
+	var floor := MeshInstance3D.new()
+	var fp := PlaneMesh.new()
+	fp.size = Vector2(70, 70)
+	floor.mesh = fp
+	floor.material_override = MaterialLibrary.floor_mat
+	floor.position.y = FLOOR_Y
+	parent.add_child(floor)
+	var rug := MeshInstance3D.new()
+	var rp := PlaneMesh.new()
+	rp.size = Vector2(22, 16)
+	rug.mesh = rp
+	rug.material_override = MaterialLibrary.rug_mat
+	rug.position.y = FLOOR_Y + 0.01
+	parent.add_child(rug)
+	# Tall walls and no ceiling: the framed camera can rise well above the
+	# table, and the open top reads as darkness above the lamps.
+	var h := 34.0
+	var cy := FLOOR_Y + h * 0.5
+	var walls := [
+		[Vector3(44, h, 0.3), Vector3(0, cy, -19.0)],
+		[Vector3(44, h, 0.3), Vector3(0, cy, 22.0)],
+		[Vector3(0.3, h, 44), Vector3(-21.0, cy, 0)],
+		[Vector3(0.3, h, 44), Vector3(21.0, cy, 0)],
+	]
+	for w in walls:
+		_box(parent, w[0], w[1], MaterialLibrary.wall_mat)
+		var size: Vector3 = w[0]
+		var pos: Vector3 = w[1]
+		var inward := -pos.normalized() * 0.2
+		var wains := Vector3(size.x if size.x > 1 else 0.12, 2.6, size.z if size.z > 1 else 0.12)
+		_box(parent, wains, Vector3(pos.x, FLOOR_Y + 1.3, pos.z) + Vector3(inward.x, 0, inward.z), MaterialLibrary.table_wood)
+		var rail := Vector3(size.x if size.x > 1 else 0.16, 0.08, size.z if size.z > 1 else 0.16)
+		_box(parent, rail, Vector3(pos.x, FLOOR_Y + 2.62, pos.z) + Vector3(inward.x, 0, inward.z) * 1.2, MaterialLibrary.brass_mat)
+		_box(parent, rail, Vector3(pos.x, FLOOR_Y + 12.4, pos.z) + Vector3(inward.x, 0, inward.z) * 1.2, MaterialLibrary.brass_mat)
+	for x in [-11.0, 11.0]:
+		_cyl(parent, 0.45, 0.5, 12.6, Vector3(x, FLOOR_Y + 6.3, -18.4), MaterialLibrary.column_mat, 32)
+		_cyl(parent, 0.7, 0.7, 0.3, Vector3(x, FLOOR_Y + 0.15, -18.4), MaterialLibrary.brass_mat, 32)
+		_cyl(parent, 0.62, 0.5, 0.3, Vector3(x, FLOOR_Y + 12.45, -18.4), MaterialLibrary.brass_mat, 32)
 
 
-static func _columns(parent: Node3D) -> void:
-	for xz in [Vector2(-7.6, -7.6), Vector2(7.6, -7.6), Vector2(-7.6, 7.6), Vector2(7.6, 7.6)]:
-		_cyl(parent, 0.28, 0.32, 4.4, Vector3(xz.x, 0.78, xz.y), MaterialLibrary.column_mat, 20)
-		_cyl(parent, 0.40, 0.40, 0.10, Vector3(xz.x, -1.18, xz.y), MaterialLibrary.brass_mat, 16)
-		_cyl(parent, 0.38, 0.34, 0.12, Vector3(xz.x, 3.02, xz.y), MaterialLibrary.brass_mat, 16)
-		_cyl(parent, 0.22, 0.22, 0.06, Vector3(xz.x, 3.14, xz.y), MaterialLibrary.gold_mat, 16)
+static func _drapes_and_branding(parent: Node3D) -> void:
+	# Pleated velvet: a row of slim cylinders reads as folds under the lamps.
+	for i in 36:
+		var x := -8.75 + i * 0.5
+		var fold := _cyl(parent, 0.3, 0.32, 9.0, Vector3(x, FLOOR_Y + 5.0, -18.55 + (0.08 if i % 2 == 0 else 0.0)), MaterialLibrary.drape_mat, 12)
+		fold.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_box(parent, Vector3(18.6, 0.14, 0.2), Vector3(0, FLOOR_Y + 9.6, -18.3), MaterialLibrary.brass_mat)
+	var plaque := _box(parent, Vector3(9.0, 2.2, 0.12), Vector3(0, 4.3, -18.1), MaterialLibrary.table_wood)
+	plaque.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_box(parent, Vector3(9.2, 0.05, 0.14), Vector3(0, 5.42, -18.05), MaterialLibrary.brass_mat)
+	_box(parent, Vector3(9.2, 0.05, 0.14), Vector3(0, 3.18, -18.05), MaterialLibrary.brass_mat)
+	_gold_text(parent, "SHADOWFETCH", Vector3(0, 4.62, -18.02), 0.30, "display")
+	_gold_text(parent, "PRIVATE SALON  ·  SHADOW CHESS", Vector3(0, 3.78, -18.02), 0.085, "semibold")
 
 
-static func _drapes(parent: Node3D) -> void:
-	_box(parent, Vector3(10.4, 5.2, 0.06), Vector3(0, 3.1, -15.22), MaterialLibrary.drape_mat)
-	_box(parent, Vector3(10.6, 0.04, 0.05), Vector3(0, 5.72, -15.16), MaterialLibrary.brass_mat)
-	_box(parent, Vector3(10.6, 0.04, 0.05), Vector3(0, 0.52, -15.16), MaterialLibrary.brass_mat)
-
-
-static func _pedestal(parent: Node3D) -> void:
-	_cyl(parent, 1.15, 1.35, 1.05, Vector3(0, -0.78, 0), MaterialLibrary.wood_frame, 28)
-	_cyl(parent, 3.15, 3.35, 0.16, Vector3(0, -0.28, 0), MaterialLibrary.wood_frame, 28)
-	_box(parent, Vector3(10.4, 0.18, 10.4), Vector3(0, -0.16, 0), MaterialLibrary.wood_frame)
-	for x in [-4.7, 4.7]:
-		for z in [-4.7, 4.7]:
-			_cyl(parent, 0.07, 0.07, 0.22, Vector3(x, -0.02, z), MaterialLibrary.brass_mat, 12)
-
-
-static func _lamps(parent: Node3D) -> void:
-	for xz in [Vector2(-5.8, -5.8), Vector2(5.8, -5.8), Vector2(-5.8, 5.8), Vector2(5.8, 5.8)]:
-		_cyl(parent, 0.05, 0.07, 0.55, Vector3(xz.x, 0.28, xz.y), MaterialLibrary.brass_mat, 12)
-		_cyl(parent, 0.16, 0.12, 0.18, Vector3(xz.x, 0.62, xz.y), MaterialLibrary.lamp_glass, 14)
-		_cyl(parent, 0.10, 0.10, 0.03, Vector3(xz.x, 0.74, xz.y), MaterialLibrary.brass_mat, 12)
-		var glow := OmniLight3D.new()
-		glow.position = Vector3(xz.x, 0.68, xz.y)
-		glow.light_color = Color(1.0, 0.78, 0.46)
-		glow.light_energy = 1.35
-		glow.omni_range = 6.0
-		parent.add_child(glow)
-
-
-static func _branding(parent: Node3D) -> void:
-	_gold_text(parent, "SHADOWFETCH", Vector3(0, 3.55, -15.10), 0.22)
-	_gold_text(parent, "SHADOW CHESS", Vector3(0, 2.95, -15.10), 0.12)
-	_gold_text(parent, "PRIVATE SALON", Vector3(0, 2.52, -15.10), 0.055)
-
-
-static func _gold_text(parent: Node3D, text: String, pos: Vector3, size: float) -> void:
+static func _gold_text(parent: Node3D, text: String, pos: Vector3, size: float, font_kind: String) -> void:
 	var mi := MeshInstance3D.new()
 	var tm := TextMesh.new()
 	tm.text = text
+	tm.font = ThemeFactory.font(font_kind)
 	tm.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	tm.font_size = 12
-	tm.depth = 0.012
-	tm.pixel_size = size / 10.0
+	tm.font_size = 32
+	tm.depth = 0.03
+	tm.pixel_size = size / 26.0
 	mi.mesh = tm
 	mi.position = pos
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.albedo_color = Color(0.92, 0.76, 0.40)
-	mat.emission_enabled = true
-	mat.emission = Color(0.90, 0.72, 0.34)
-	mat.emission_energy_multiplier = 0.55
-	mi.material_override = mat
+	mi.material_override = MaterialLibrary.gold_mat
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	parent.add_child(mi)
+
+
+static func _lamps(parent: Node3D) -> void:
+	# Floor lamps stand back in the room corners so they frame the table
+	# without their poles crossing the playing view.
+	for xz in [Vector2(-14.5, -12.5), Vector2(14.5, -12.5), Vector2(-15.5, 13.0), Vector2(15.5, 13.0)]:
+		var base_y := FLOOR_Y
+		_cyl(parent, 0.5, 0.6, 0.12, Vector3(xz.x, base_y + 0.06, xz.y), MaterialLibrary.brass_mat, 32)
+		_cyl(parent, 0.05, 0.06, 4.2, Vector3(xz.x, base_y + 2.2, xz.y), MaterialLibrary.brass_mat, 16)
+		var shade := _cyl(parent, 0.42, 0.78, 0.9, Vector3(xz.x, base_y + 4.4, xz.y), MaterialLibrary.lamp_glass, 40)
+		shade.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		_cyl(parent, 0.8, 0.8, 0.04, Vector3(xz.x, base_y + 3.96, xz.y), MaterialLibrary.brass_mat, 40)
+		var glow := OmniLight3D.new()
+		glow.name = "LampLight"
+		glow.position = Vector3(xz.x, base_y + 4.3, xz.y)
+		glow.light_color = Color(1.0, 0.72, 0.42)
+		glow.light_energy = 2.2
+		glow.omni_range = 11.0
+		glow.omni_attenuation = 1.4
+		glow.shadow_enabled = false
+		glow.light_volumetric_fog_energy = 0.6
+		parent.add_child(glow)

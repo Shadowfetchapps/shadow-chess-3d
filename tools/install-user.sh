@@ -4,6 +4,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BIN_SRC="$ROOT/export/linux/shadow-chess-3d.x86_64"
 APP_ID="com.shadowfetch.Chess"
 ICON_NAME="shadow-chess-3d"
+VERSION="$(sed -n 's/^config\/version="\(.*\)"/\1/p' "$ROOT/project.godot")"
 BINDIR="${HOME}/.local/bin"
 PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}"
 
@@ -21,7 +22,9 @@ if [[ ! -x "$BIN_SRC" ]]; then
 fi
 
 mkdir -p "$BINDIR" "$PREFIX/applications"
-install -m 0755 "$BIN_SRC" "$BINDIR/shadow-chess-3d"
+# Replace the previous binary atomically so a running copy is never truncated.
+install -m 0755 "$BIN_SRC" "$BINDIR/.shadow-chess-3d.new"
+mv -f "$BINDIR/.shadow-chess-3d.new" "$BINDIR/shadow-chess-3d"
 if [[ -f "$ROOT/export/linux/shadow-chess-3d.pck" ]]; then
   install -m 0644 "$ROOT/export/linux/shadow-chess-3d.pck" "$BINDIR/shadow-chess-3d.pck"
 fi
@@ -48,7 +51,7 @@ Type=Application
 Version=1.0
 Name=Shadow Chess 3D
 GenericName=Chess
-Comment=Premium 3D chess for Linux
+Comment=3D chess for Linux — play Shadow, solve puzzles, analyse games
 Exec=${BINDIR}/shadow-chess-3d
 TryExec=${BINDIR}/shadow-chess-3d
 Icon=${ICON_NAME}
@@ -57,7 +60,7 @@ Categories=Game;BoardGame;
 Keywords=chess;board;3d;shadowfetch;
 StartupNotify=true
 StartupWMClass=Shadow Chess 3D
-X-AppVersion=2.0.0
+X-AppVersion=${VERSION}
 EOF
 done
 
@@ -71,5 +74,5 @@ if command -v desktop-file-validate >/dev/null; then
   desktop-file-validate "$PREFIX/applications/${APP_ID}.desktop" || true
 fi
 test -x "$BINDIR/shadow-chess-3d"
-echo "Installed $BINDIR/shadow-chess-3d"
+echo "Installed Shadow Chess 3D ${VERSION}: $BINDIR/shadow-chess-3d"
 echo "Desktop: $PREFIX/applications/${APP_ID}.desktop"
